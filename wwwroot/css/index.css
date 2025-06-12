@@ -24,7 +24,7 @@ main {
 }
 
 #report-container {
-    height: calc(0.5625 * 61vw); /* 16:9 aspect ratio */
+    height: calc(0.5625 * 100vw); /* 16:9 aspect ratio */
 }
 
 footer > p {
