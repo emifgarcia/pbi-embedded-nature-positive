@@ -1,107 +1,83 @@
-﻿<!DOCTYPE html>
+﻿<!-- Copyright (c) Microsoft Corporation.
+Licensed under the MIT license. -->
+ 
+<!DOCTYPE html>
 <html lang="pt-BR">
-
+ 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Power BI - Instituto Tecnológico Vale</title>
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <style>
         body {
             background-color: #f5f5f5;
         }
-
-        header,
-        footer {
+ 
+        header, footer {
             background-color: #007E7A;
             color: white;
             padding: 15px 0;
         }
-
+ 
         header {
             display: flex;
             align-items: center;
             padding-left: 20px;
         }
-
+ 
         header img {
             height: 50px;
             margin-right: 15px;
         }
-
+ 
         header h4 {
             margin: 0;
         }
-
+ 
         #report-container {
             width: 100%;
             height: 90vh;
             margin: 40px auto;
             max-width: 95%;
         }
-
+ 
         .embed-container {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
+ 
         .error-container {
             max-width: 90%;
             margin: 20px auto;
         }
-
+ 
         footer {
             text-align: center;
         }
     </style>
 </head>
-
+ 
 <body>
     <header>
-        <img src="images/logo-itv.png" alt="Logo ITV" />
+        <img src="images/logo-itv.png" alt="Logo ITV">
         <h4>Power BI - Instituto Tecnológico Vale</h4>
     </header>
-
+ 
     <main>
         <section id="report-container" class="embed-container">
             <!-- O relatório será renderizado aqui -->
         </section>
-
-        <section class="error-container text-center text-danger"></section>
+ 
+        <!-- Usado para exibir erros de embed -->
+        <section class="error-container text-center text-danger">
+        </section>
     </main>
-
-    <footer>
-        <p>&copy; Instituto Tecnológico Vale</p>
-    </footer>
-
-    <!-- Bibliotecas -->
+ 
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="lib/powerbi-client/dist/powerbi.min.js"></script>
-
-    <!-- Script oficial do Keycloak -->
-    <script src="https://cdn.jsdelivr.net/npm/keycloak-js@21.0.1/dist/keycloak.min.js"></script>
-
-    <script>
-        const keycloak = new Keycloak({
-            url: 'https://azusdstiapp-e8bxc3d5hmczfqbu.eastus-01.azurewebsites.net/auth',
-            realm: 'VALE',
-            clientId: 'powerbi-embedded'
-        });
-
-        keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
-            if (authenticated) {
-                console.log('Usuário autenticado:', keycloak.tokenParsed.preferred_username);
-                // Carrega seu embed do Power BI só após login
-                const script = document.createElement('script');
-                script.src = 'js/index.js';
-                document.body.appendChild(script);
-            }
-        }).catch(() => {
-            document.querySelector('.error-container').innerText =
-                'Erro ao autenticar no Keycloak.';
-        });
-    </script>
+    <script src="js/index.js"></script>
 </body>
-
 </html>
